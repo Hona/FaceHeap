@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>FaceHeap</title>
+    <script>
+        window.loadDeveloper = function(developer) {
+            const request = new XMLHttpRequest();
+            request.open('GET', '/developers/' + developer + '/popularity', true);
+            request.onload = function() {
+                if (request.status >= 200 && request.status < 400) {
+                    document.getElementById(developer).textContent = request.responseText;
+                }
+                else {
+                    document.getElementById(developer).textContent = 'Error';
+                }
+            };
+            request.send();
+        }
+        
+        window.loadAllDevelopers = function() {
+            window.loadDeveloper('bryden');
+            window.loadDeveloper('luke');
+        }
+        
+        window.voteDeveloper = function(developer, vote) {
+            const request = new XMLHttpRequest();
+            request.open('POST', '/developers/' + developer + '/popularity', true);
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.onload = function() {
+                if (request.status >= 200 && request.status < 400) {
+                    window.loadDeveloper(developer);
+                }
+                else {
+                    document.getElementById(developer).textContent = 'Error';
+                }
+            };
+            request.send(JSON.stringify({ vote: vote }));
+        }
+
+        window.loadAllDevelopers();
+        
+        setInterval(window.loadAllDevelopers, 2000);
+    </script>
+</head>
+<body>
+    <h1>FaceHeap</h1>
+    <p>Welcome to FaceHeap!</p>
+    <p>FaceHeap is a popularity contest between developers.</p>
+    <p>FaceHeap is currently under development.</p>
+    <p>Check back soon for updates!</p>
+    
+<br>
+    
+    <h3>Bryden</h3>
+    <output id="bryden">?</output>
+    <button onclick="window.voteDeveloper('bryden', 'increase')">Increase</button>
+    <button onclick="window.voteDeveloper('bryden', 'decrease')">Decrease</button>
+
+<br>
+
+    <h3>Luke</h3>
+    <output id="luke">?</output>
+    <button onclick="window.voteDeveloper('luke', 'increase')">Increase</button>
+    <button onclick="window.voteDeveloper('luke', 'decrease')">Decrease</button>
+<br>
+</body>
+</html>
