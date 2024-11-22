@@ -1,6 +1,10 @@
 using System.Text.Json.Serialization;
+using System.Threading.RateLimiting;
+using FaceHeap.Common.Middleware;
 using FastEndpoints.Swagger;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 
 [assembly: VogenDefaults(customizations: Customizations.AddFactoryMethodForGuids)]
 
@@ -28,6 +32,8 @@ builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsigh
 
 var app = builder.Build();
 
+app.UseRateLimiter();
+
 app.UseFastEndpoints(config =>
 {
     config.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
@@ -41,6 +47,12 @@ app.UseStaticFiles();
 
 // show 404 page
 app.UseStatusCodePagesWithReExecute("/error", "?code={0}");
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.MigrateAsync();
+}
 
 app.Run();
 

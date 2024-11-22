@@ -11,6 +11,7 @@ internal sealed class VoteDeveloperPopularityCommand(AppDbContext db)
     {
         Post("/developers/{Name}/popularity");
         AllowAnonymous();
+        Throttle(60, 10);
     }
 
     public override async Task HandleAsync(
