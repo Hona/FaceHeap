@@ -1,8 +1,5 @@
 using System.Text.Json.Serialization;
-using System.Threading.RateLimiting;
-using FaceHeap.Common.Middleware;
 using FastEndpoints.Swagger;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 
