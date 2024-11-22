@@ -2,12 +2,15 @@
 <head>
     <title>FaceHeap</title>
     <script>
+        window.loading = false;
+        
         window.loadDeveloper = function(developer) {
             const request = new XMLHttpRequest();
             request.open('GET', '/developers/' + developer + '/popularity', true);
             request.onload = function() {
                 if (request.status >= 200 && request.status < 400) {
                     document.getElementById(developer).textContent = request.responseText;
+                    document.getElementById(`${developer}-head`).style.width = request.responseText + '%';
                 }
                 else {
                     document.getElementById(developer).textContent = 'Error';
@@ -17,8 +20,14 @@
         }
         
         window.loadAllDevelopers = function() {
+            if (window.loading) {
+                return;
+            }
+            
+            window.loading = true;
             window.loadDeveloper('bryden');
             window.loadDeveloper('luke');
+            loading.loading = false;
         }
         
         window.voteDeveloper = function(developer, vote) {
@@ -40,6 +49,11 @@
         
         setInterval(window.loadAllDevelopers, 2000);
     </script>
+    <style>
+        img {
+            height: 15vh;
+        }
+    </style>
 </head>
 <body>
     <h1>FaceHeap</h1>
@@ -51,14 +65,18 @@
 <br>
     
     <h3>Bryden</h3>
-    <output id="bryden">?</output>
+    <output id="bryden" style="display: none;">?</output>
+    <img id="bryden-head" src="img/bryden.png" alt="Bryden's head"/>
+    <br>
     <button onclick="window.voteDeveloper('bryden', 'increase')">Increase</button>
     <button onclick="window.voteDeveloper('bryden', 'decrease')">Decrease</button>
 
 <br>
 
     <h3>Luke</h3>
-    <output id="luke">?</output>
+    <output id="luke" style="display: none;">?</output>
+    <img id="luke-head" src="img/luke.png" alt="Luke's head"/>
+    <br>
     <button onclick="window.voteDeveloper('luke', 'increase')">Increase</button>
     <button onclick="window.voteDeveloper('luke', 'decrease')">Decrease</button>
 <br>
