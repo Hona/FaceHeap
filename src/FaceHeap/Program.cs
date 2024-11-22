@@ -25,8 +25,6 @@ builder.Services.AddAppDbContext(builder.Configuration);
 
 var app = builder.Build();
 
-app.UseRateLimiter();
-
 app.UseFastEndpoints(config =>
 {
     config.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
