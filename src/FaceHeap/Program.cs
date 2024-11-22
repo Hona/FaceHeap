@@ -29,8 +29,6 @@ builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsigh
 
 var app = builder.Build();
 
-app.UseRateLimiter();
-
 app.UseFastEndpoints(config =>
 {
     config.Serializer.Options.Converters.Add(new JsonStringEnumConverter());
