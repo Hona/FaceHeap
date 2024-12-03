@@ -5,14 +5,10 @@
 ### Seed database
 
 ```sql
-USE [faceheap]
-GO
-
-INSERT INTO [dbo].[Developers]
+INSERT INTO [faceheap].[dbo].[Developers]
            ([Id], [Name])
      VALUES
            (NEWID(), 'Bryden'),
 		   (NEWID(), 'Luke')
-          
 GO
 ```

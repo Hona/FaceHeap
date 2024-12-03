@@ -1,0 +1,15 @@
+{
+  "name": "FaceHeap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "minify": "cd wwwroot && minify index.html > index.min.html && minify faceheap.js > faceheap.min.js && minify faceheap.css > faceheap.min.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "minify": "^12.0.0"
+  }
+}
