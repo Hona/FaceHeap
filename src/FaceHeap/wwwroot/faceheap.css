@@ -1,3 +1,7 @@
 button {
     touch-action: manipulation; /* Disable double click to zoom */
 }
+
+img {
+    height: 15vh;
+}
