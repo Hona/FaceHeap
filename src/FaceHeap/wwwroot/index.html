@@ -1,59 +1,12 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FaceHeap</title>
-    <script>
-        window.loading = false;
-        
-        window.loadDeveloper = function(developer) {
-            const request = new XMLHttpRequest();
-            request.open('GET', '/developers/' + developer + '/popularity', true);
-            request.onload = function() {
-                if (request.status >= 200 && request.status < 400) {
-                    document.getElementById(developer).textContent = request.responseText;
-                    document.getElementById(`${developer}-head`).style.width = request.responseText + '%';
-                }
-                else {
-                    document.getElementById(developer).textContent = 'Error';
-                }
-            };
-            request.send();
-        }
-        
-        window.loadAllDevelopers = function() {
-            if (window.loading) {
-                return;
-            }
-            
-            window.loading = true;
-            window.loadDeveloper('bryden');
-            window.loadDeveloper('luke');
-            window.loading = false;
-        }
-        
-        window.voteDeveloper = function(developer, vote) {
-            const request = new XMLHttpRequest();
-            request.open('POST', '/developers/' + developer + '/popularity', true);
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.onload = function() {
-                if (request.status >= 200 && request.status < 400) {
-                    window.loadDeveloper(developer);
-                }
-                else {
-                    document.getElementById(developer).textContent = 'Error';
-                }
-            };
-            request.send(JSON.stringify({ vote: vote }));
-        }
 
-        window.loadAllDevelopers();
-        
-        setInterval(window.loadAllDevelopers, 2000);
-    </script>
-    <style>
-        img {
-            height: 15vh;
-        }
-    </style>
+    <script src="/faceheap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/faceheap.min.css" type="text/css">
 </head>
 <body>
     <h1>FaceHeap</h1>
@@ -62,7 +15,7 @@
     <p>FaceHeap is currently under development.</p>
     <p>Check back soon for updates!</p>
     
-<br>
+    <br>
     
     <h3>Bryden</h3>
     <output id="bryden" style="display: none;">?</output>
@@ -71,7 +24,7 @@
     <button onclick="window.voteDeveloper('bryden', 'increase')">Increase</button>
     <button onclick="window.voteDeveloper('bryden', 'decrease')">Decrease</button>
 
-<br>
+    <br>
 
     <h3>Luke</h3>
     <output id="luke" style="display: none;">?</output>
@@ -79,6 +32,6 @@
     <br>
     <button onclick="window.voteDeveloper('luke', 'increase')">Increase</button>
     <button onclick="window.voteDeveloper('luke', 'decrease')">Decrease</button>
-<br>
+    <br>
 </body>
 </html>
