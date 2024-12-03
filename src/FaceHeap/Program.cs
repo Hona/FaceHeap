@@ -32,12 +32,10 @@ app.UseSwaggerGen();
 
 // Serve the UI & fallback to index.html
 // Could do this with Azure Static Web Apps etc, but this is simple.
-app.UseRewriter(new RewriteOptions().AddRewrite("^$", "index.html", skipRemainingRules: true));
-app.UseStaticFiles();
+app.UseRewriter(new RewriteOptions().AddRewrite("^$", "index.min.html", skipRemainingRules: true));
+app.MapStaticAssets();
 
 // show 404 page
 app.UseStatusCodePagesWithReExecute("/error", "?code={0}");
 
 app.Run();
-
-public partial class Program;
