@@ -23,6 +23,8 @@ jobs:
 
       - name: pnpm-setup
         uses: pnpm/action-setup@v2
+        with:
+          package_json_file: 'src/FaceHeap/package.json'
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
