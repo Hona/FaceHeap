@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 
 [assembly: VogenDefaults(customizations: Customizations.AddFactoryMethodForGuids)]
 
@@ -37,5 +38,11 @@ app.MapStaticAssets();
 
 // show 404 page
 app.UseStatusCodePagesWithReExecute("/error", "?code={0}");
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.MigrateAsync();
+}
 
 app.Run();
