@@ -9,29 +9,39 @@
     <link rel="stylesheet" href="/faceheap.min.css" type="text/css">
 </head>
 <body>
-    <h1>FaceHeap</h1>
-    <p>Welcome to FaceHeap!</p>
-    <p>FaceHeap is a popularity contest between developers.</p>
-    <p>FaceHeap is currently under development.</p>
-    <p>Check back soon for updates!</p>
+    <div class="info">
+        <h1>FaceHeap</h1>
+        <p>FaceHeap is a popularity contest between developers.</p>
+        <p>Click on the developer you want to increase in popularity.</p>
+    </div>
+        
+    <div class="developers">
+        <div class="vote-container">
+            <h3>Bryden</h3>
+            <div class="button-container">
+                <output id="bryden" style="display: none;">?</output>
+                <button id="bryden-head" onclick="window.voteDeveloper('bryden')">
+                    <img src="img/bryden.png" alt="Bryden's head"/>
+                </button>
+            </div>
+        </div>
+        <div class="vote-container">
+            <h3>Luke</h3>
+            <div class="button-container">
+                <output id="luke" style="display: none;">?</output>
+                <button id="luke-head" onclick="window.voteDeveloper('luke')">
+                    <img src="img/luke.png" alt="Luke's head"/>
+                </button>
+            </div>
+        </div>
+    </div>
     
-    <br>
-    
-    <h3>Bryden</h3>
-    <output id="bryden" style="display: none;">?</output>
-    <img id="bryden-head" src="img/bryden.png" alt="Bryden's head"/>
-    <br>
-    <button onclick="window.voteDeveloper('bryden', 'increase')">Increase</button>
-    <button onclick="window.voteDeveloper('bryden', 'decrease')">Decrease</button>
+   
 
     <br>
 
-    <h3>Luke</h3>
-    <output id="luke" style="display: none;">?</output>
-    <img id="luke-head" src="img/luke.png" alt="Luke's head"/>
     <br>
-    <button onclick="window.voteDeveloper('luke', 'increase')">Increase</button>
-    <button onclick="window.voteDeveloper('luke', 'decrease')">Decrease</button>
-    <br>
+
+
 </body>
 </html>

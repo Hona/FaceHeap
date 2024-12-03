@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FaceHeap.Features.Developers;
 
-public sealed record VoteDeveloperPopularityRequest(string Name, PopularityVote Vote);
+public sealed record VoteDeveloperPopularityRequest(string Name);
 
 internal sealed class VoteDeveloperPopularityCommand(AppDbContext db)
     : Endpoint<VoteDeveloperPopularityRequest, NoContent>
@@ -11,7 +11,7 @@ internal sealed class VoteDeveloperPopularityCommand(AppDbContext db)
     {
         Post("/developers/{Name}/popularity");
         AllowAnonymous();
-        Throttle(60, 10);
+        Throttle(25, 3);
     }
 
     public override async Task HandleAsync(
@@ -19,17 +19,17 @@ internal sealed class VoteDeveloperPopularityCommand(AppDbContext db)
         CancellationToken cancellationToken
     )
     {
-        var delta = request.Vote switch
-        {
-            PopularityVote.Increase => 1,
-            PopularityVote.Decrease => -1,
-            _ => throw new ArgumentOutOfRangeException(nameof(request.Vote)),
-        };
-
         await db
             .Developers.Where(x => x.Name == request.Name)
             .ExecuteUpdateAsync(
-                x => x.SetProperty(p => p.Popularity, p => p.Popularity + delta),
+                x => x.SetProperty(p => p.Popularity, p => p.Popularity + 1),
+                cancellationToken
+            );
+
+        await db
+            .Developers.Where(x => x.Name != request.Name)
+            .ExecuteUpdateAsync(
+                x => x.SetProperty(p => p.Popularity, p => p.Popularity - 1),
                 cancellationToken
             );
 

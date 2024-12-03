@@ -6,9 +6,9 @@
 
 ```sql
 INSERT INTO [faceheap].[dbo].[Developers]
-           ([Id], [Name])
+           ([Id], [Name], [Popularity])
      VALUES
-           (NEWID(), 'Bryden'),
-		   (NEWID(), 'Luke')
+           (NEWID(), 'Bryden', 50),
+		   (NEWID(), 'Luke', 50)
 GO
 ```
