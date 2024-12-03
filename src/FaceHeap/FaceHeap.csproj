@@ -1,10 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <StaticAnalysisCodeType>General</StaticAnalysisCodeType>
+        <ApplicationInsightsResourceId>/subscriptions/92dba6c6-2cf8-46ad-9d75-8674f0f66b9a/resourceGroups/faceheap/providers/microsoft.insights/components/FaceHeap</ApplicationInsightsResourceId>
+        <UserSecretsId>9d832f4a-1db1-49d9-a1a6-cd3ba0bdbf0c</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,19 +15,18 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+
         <PackageReference Include="FastEndpoints.Swagger" Version="5.32.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+        
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
         <PackageReference Include="Vogen" Version="5.0.6" />
-        <PackageReference Update="CSharpier.MsBuild" Version="0.30.2">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 
     <!--
