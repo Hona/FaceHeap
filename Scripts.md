@@ -5,10 +5,9 @@
 ### Seed database
 
 ```sql
-INSERT INTO [faceheap].[dbo].[Developers]
+INSERT INTO [dbo].[Developers]
            ([Id], [Name], [Popularity])
      VALUES
-           (NEWID(), 'Bryden', 50),
-		   (NEWID(), 'Luke', 50)
-GO
+        (NEWID(), 'Bryden', 50),
+	(NEWID(), 'Luke', 50)
 ```
