@@ -1,5 +1,7 @@
 Feel the Mayhem - When Deployments go Wrong
+
 Bryden Oliver & Luke Parker
+
 @brydenoliver @Hona
 
 Come and join the fun as we deploy a broken website and much heartache and hilarity ensues. You'll learn about how not to react, some things it's good to monitor and just how to get things back on track.
